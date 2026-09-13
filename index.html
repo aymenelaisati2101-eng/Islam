@@ -3,14 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IslamQuest - Redirection</title>
-    <script>
-        // Redirection automatique vers le jeu
-        window.location.href = '/Islam/html/index.html';
-    </script>
+    <title>IslamQuest - Apprends • Découvre • Collectionne</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p>Redirection vers IslamQuest...</p>
-    <a href="html/index.html">Cliquez ici si la redirection ne fonctionne pas</a>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="nav-container">
+            <div class="logo">IslamQuest</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-btn" data-page="home">🏠 Accueil</a></li>
+                <li><a href="#" class="nav-btn" data-page="collection">📚 Collection</a></li>
+                <li><a href="#" class="nav-btn" data-page="discover">✨ Découvrir</a></li>
+                <li><a href="#" class="nav-btn" data-page="trades">🔄 Échanges</a></li>
+                <li><a href="#" class="nav-btn" data-page="leaderboard">🏆 Classement</a></li>
+                <li><a href="#" class="nav-btn" data-page="profile">👤 Profil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- PAGE ACCUEIL -->
+        <section id="home" class="page active">
+            <div class="home-hero">
+                <div class="hero-content">
+                    <h1 class="game-title">ISLAMQUEST</h1>
+                    <p class="game-tagline">Apprends • Découvre • Collectionne</p>
+                </div>
+            </div>
+
+            <div class="home-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="home-cards-obtained">0</div>
+                    <div class="stat-label">Cartes obtenues</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="home-cards-remaining">1000</div>
+                    <div class="stat-label">Cartes restantes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="home-progress">0%</div>
+                    <div class="stat-label">Progression</div>
+                </div>
+            </div>
+
+            <div class="home-progress-bar">
+                <div class="progress-fill" id="home-progress-fill"></div>
+            </div>
+
+            <div class="home-actions">
+                <button class="btn btn-primary" id="btn-discover-home">DÉCOUVRIR</button>
+                <button class="btn btn-secondary" id="btn-collection-home">MA COLLECTION</button>
+            </div>
+
+            <div class="home-description">
+                <h2>Concept du Jeu</h2>
+                <p>Apprends des informations fascinantes sur l'Islam à travers des questions éducatives. À chaque bonne réponse, tu débloques une nouvelle carte à ajouter à ta collection.</p>
+                <p>Ton objectif : <strong>compléter tous les 1 000 cartes</strong> et devenir un véritable Collector.</p>
+                <p>Chaque carte possède une rareté unique, du Commun à la Secrète, avec des designs exclusifs.</p>
+            </div>
+
+            <div class="home-rarities">
+                <h2>Les Raretés</h2>
+                <div class="rarities-grid">
+                    <div class="rarity-item">
+                        <div class="rarity-icon common">◆</div>
+                        <span>Commun</span>
+                    </div>
+                    <div class="rarity-item">
+                        <div class="rarity-icon rare">◆</div>
+                        <span>Rare</span>
+                    </div>
+                    <div class="rarity-item">
+                        <div class="rarity-icon epic">◆</div>
+                        <span>Épique</span>
+                    </div>
+                    <div class="rarity-item">
+                        <div class="rarity-icon legendary">◆</div>
+                        <span>Légendaire</span>
+                    </div>
+                    <div class="rarity-item">
+                        <div class="rarity-icon secret">◆</div>
+                        <span>Secrète</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE COLLECTION -->
+        <section id="collection" class="page">
+            <div class="collection-header">
+                <h1>Ma Collection</h1>
+                <div class="collection-count">
+                    <span id="collection-obtained">0</span> / <span>1000</span> cartes
+                </div>
+            </div>
+
+            <div class="collection-grid" id="collection-grid">
+                <!-- Cartes générées dynamiquement -->
+            </div>
+        </section>
+
+        <!-- PAGE DÉCOUVRIR -->
+        <section id="discover" class="page">
+            <div class="discover-header">
+                <h1>Découvrir & Apprendre</h1>
+                <p>Réponds correctement à la question pour débloquer une carte</p>
+            </div>
+
+            <div class="discover-content">
+                <div class="learn-section" id="learn-section">
+                    <div class="learning-card">
+                        <h2 id="learn-title">Titre</h2>
+                        <p id="learn-content">Contenu éducatif...</p>
+                        <div class="learn-category" id="learn-category">Catégorie</div>
+                    </div>
+                </div>
+
+                <div class="quiz-section" id="quiz-section">
+                    <div class="quiz-card">
+                        <h3 id="quiz-question">Question ?</h3>
+                        <div class="quiz-options" id="quiz-options">
+                            <!-- Options générées dynamiquement -->
+                        </div>
+                        <button class="btn btn-primary" id="btn-validate-answer" disabled>Valider</button>
+                    </div>
+                </div>
+
+                <div class="card-unlock-section" id="card-unlock-section" style="display: none;">
+                    <h2>🎉 Bravo !</h2>
+                    <p>Tu as débloqué une nouvelle carte :</p>
+                    <div id="unlocked-card-container"></div>
+                    <button class="btn btn-primary" id="btn-next-question">Suivant</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE ÉCHANGES -->
+        <section id="trades" class="page">
+            <div class="trades-header">
+                <h1>Échanges</h1>
+                <p>Échange tes cartes en double avec d'autres joueurs</p>
+            </div>
+
+            <div class="trades-content">
+                <div class="trade-section">
+                    <h2>Mes Cartes à Échanger</h2>
+                    <div class="cards-for-trade" id="cards-for-trade">
+                        <p class="empty-state">Aucune carte en double pour l'instant</p>
+                    </div>
+                </div>
+
+                <div class="trade-demo">
+                    <h2>Système d'Échange</h2>
+                    <p>Pour cette version de démonstration, le système d'échange montre l'interface de sélection.</p>
+                    <p>Un vrai système sécurisé en ligne sera intégré ultérieurement avec :</p>
+                    <ul>
+                        <li>🔐 Vérification des deux joueurs</li>
+                        <li>🔀 Échanges équilibrés (rareté pour rareté)</li>
+                        <li>⏱️ Confirmation des deux côtés</li>
+                        <li>💾 Sauvegarde sécurisée</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE CLASSEMENT -->
+        <section id="leaderboard" class="page">
+            <div class="leaderboard-header">
+                <h1>Classement</h1>
+                <p>Top joueurs avec le plus de cartes collectées</p>
+            </div>
+
+            <div class="leaderboard-content">
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <!-- Classement généré dynamiquement -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE PROFIL -->
+        <section id="profile" class="page">
+            <div class="profile-header">
+                <div class="profile-avatar" id="profile-avatar">👤</div>
+                <h1 id="profile-name">Joueur</h1>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Cartes obtenues</span>
+                    <span class="stat-value" id="profile-cards-obtained">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Progression</span>
+                    <span class="stat-value" id="profile-progress">0%</span>
+                </div>
+            </div>
+
+            <div class="profile-progress-bar">
+                <div class="progress-fill" id="profile-progress-fill"></div>
+            </div>
+
+            <div class="profile-rarity-breakdown">
+                <h2>Répartition par Rareté</h2>
+                <div class="rarity-stats">
+                    <div class="rarity-stat">
+                        <div class="rarity-badge common">Commun</div>
+                        <span id="profile-rarity-common">0</span>
+                    </div>
+                    <div class="rarity-stat">
+                        <div class="rarity-badge rare">Rare</div>
+                        <span id="profile-rarity-rare">0</span>
+                    </div>
+                    <div class="rarity-stat">
+                        <div class="rarity-badge epic">Épique</div>
+                        <span id="profile-rarity-epic">0</span>
+                    </div>
+                    <div class="rarity-stat">
+                        <div class="rarity-badge legendary">Légendaire</div>
+                        <span id="profile-rarity-legendary">0</span>
+                    </div>
+                    <div class="rarity-stat">
+                        <div class="rarity-badge secret">Secrète</div>
+                        <span id="profile-rarity-secret">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL CARTE DÉTAIL -->
+    <div class="modal" id="card-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="card-detail-container" id="card-detail-container">
+                <!-- Carte détail générée dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CARTE SECRÈTE -->
+    <div class="modal secret-card-modal" id="secret-card-modal">
+        <div class="secret-card-backdrop">
+            <div class="secret-card-container">
+                <div class="secret-particles"></div>
+                <div class="secret-card-reveal" id="secret-card-reveal">
+                    <!-- Carte secrète révélée -->
+                </div>
+                <div class="secret-card-text">
+                    <h2>🔒 CARTE SECRÈTE DÉCOUVERTE !</h2>
+                </div>
+                <button class="btn btn-primary" id="btn-secret-close">Continuer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
